@@ -17,13 +17,12 @@ const respondJSONMeta = (request, response, status) => {
 
 // Get Users
 const getUsers = (request, response, parsedUrl) => {
-  if(parsedUrl=='/getUsers'){
-    const responseJSON = { users,};
+  if (parsedUrl === '/getUsers') {
+    const responseJSON = { users };
     return respondJSON(request, response, 200, responseJSON);
-  } else{
-    const responseJSON = { message:'Page not found'};
-    return respondJSON(request, response, 404, responseJSON);
   }
+  const responseJSON = { message: 'Page not found' };
+  return respondJSON(request, response, 404, responseJSON);
 };
 
 // Add User
@@ -41,19 +40,19 @@ const addUser = (request, response, body) => {
   // 204
   if (users[body.name]) {
     // Same name, different age => change age
-    if(users[body.name].age!=body.age){
+    if (users[body.name].age !== body.age) {
       responseCode = 204;
       users[body.name].age = body.age;
-      //console.log(`new age: ${users[body.name]}:${users[body.name].age} `);
+      // console.log(`new age: ${users[body.name]}:${users[body.name].age} `);
     }
     // name and age already exsist
-    if ((users[body.name].name==body.name) && (users[body.name].age==body.age)) {
+    if ((users[body.name].name === body.name) && (users[body.name].age === body.age)) {
       responseCode = 204;
     }
     return respondJSONMeta(request, response, responseCode);
-  } else {
-    users[body.name] = {};
   }
+  users[body.name] = {};
+
 
   users[body.name].name = body.name;
   users[body.name].age = body.age;

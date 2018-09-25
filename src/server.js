@@ -34,18 +34,18 @@ const handlePost = (request, response, parsedUrl) => {
 const handleGet = (request, response, parsedUrl) => {
   if (parsedUrl.pathname === '/style.css') {
     htmlHandler.getCSS(request, response);
-  } else if (parsedUrl.pathname == '/getUsers') {
+  } else if (parsedUrl.pathname === '/getUsers') {
     request.on('error', (err) => {
       console.dir(err);
       response.statusCode = 400;
       response.end();
     });
     jsonHandler.getUsers(request, response, parsedUrl.pathname);
-  } else if(parsedUrl.pathname == '/notReal') {
-    //response.statusCode = 404;
-    //response.end();
+  } else if (parsedUrl.pathname === '/notReal') {
+    // response.statusCode = 404;
+    // response.end();
     jsonHandler.getUsers(request, response, parsedUrl.pathname);
-  }else {
+  } else {
     htmlHandler.getIndex(request, response);
   }
 };
